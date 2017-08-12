@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="clean blog">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="pidefrem">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="AUC Derivation"/>
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="clean blog" />
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="pidefrem"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+        <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+    <title>AUC Derivation - pidefrem</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Google Analytics -->
+    
+
+
+    <!-- favicon --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    
+	
+</head>
+
+
+<body>
+
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">pidefrem</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="/">
+                            
+                                Home
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives">
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags">
+                            
+                                Tags
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/categories">
+                            
+                                Categories
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('/img/ray-hennessy-253874.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>AUC Derivation</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        
+                            2017-08-12
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+
+<a href="/tags/notebook/">#notebook</a>
+
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                </div>
+            
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <p>The Receiver Operating Characteristic “ROC” illustrates the performance of the binary classifier by plotting the false alarm probability ($P_{FA}$) on the horizontal axis and the detection probability ($P_D$) on the vertical axis. The area under the ROC-curve (AUC) is used to provide a single-figure quantification of the performance of the binary classifier based on the ROC. This article provides an interpretation of the AUC and connects the AUC to the Wilcoxon–Mann–Whitney statistic, which is a nonparametic test to compare two populations. This derivation is pretty hard to find but the connection between the AUC and the Wilcoxon–Mann–Whitney test is important insofar as it provides some perspective on the seemingly arbitrary use of AUC to quantify the performance of the binary classifier.</p>
+<p>Let’s proceed with some definitions and some notation. A binary classifier can make two kinds of mistakes, usually and unhelpfully called Type I and Type II errors.  The <em>detection probability</em> is </p>
+<span>$P_D= \mathbb{P}(1|x \in C_1)$</span><!-- Has MathJax -->
+<p>which says that given a member of the $C_1$ class, this is the probability of the binary classifier correctly classifying $x$ as of that class. The <em>false alarm probability</em> is</p>
+<span>$P_{FA}= \mathbb{P}(1|x \in C_0)$</span><!-- Has MathJax -->
+<p>Which is the probability that an element of the $C_0$ class will Incorrectly be classified as an element of the $C_1$ class. Binary classifiers usually work by comparing the measurement $x$ to a fixed threshold, $c$, to assess class membership. We can rewrite the above two definitions using $c$ as follows:</p>
+<span>$P_D= \mathbb{P}(x &gt; c|x \in C_1)$</span><!-- Has MathJax -->
+<span>$P_{FA}= \mathbb{P}( x&gt; c|x \in C_0)$</span><!-- Has MathJax -->
+<p>Thus, the ROC-curve is really a plot of the countour</p>
+<span>$(P_{FA}(c),P_D(c))$</span><!-- Has MathJax -->
+<p>so that drawing of the curve actually means changing the value of the threshold, $c$. As a concrete example, we take the $f(x|C_0) = \mathcal{N}(0,1)$ and $f(x|C_1) = \mathcal{N}(2,1)$ as the two respective probability densities of $C_0$ and $C_1$. The following code constructs a ROC-curve for this situation.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">%matplotlib inline</div><div class="line"><span class="keyword">from</span> IPython.html.widgets <span class="keyword">import</span> interact</div><div class="line"><span class="keyword">from</span> scipy <span class="keyword">import</span> stats</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">f0=stats.norm(<span class="number">0</span>,<span class="number">1</span>)</div><div class="line">f1=stats.norm(<span class="number">2</span>,<span class="number">1</span>)</div><div class="line">fig,ax = subplots()</div><div class="line">xi = linspace(<span class="number">-2</span>,<span class="number">5</span>,<span class="number">100</span>)</div><div class="line">ax.plot(xi,f0.pdf(xi),label=<span class="string">r'$f(x|C_0)$'</span>)</div><div class="line">ax.plot(xi,f1.pdf(xi),label=<span class="string">r'$f(x|C_1)$'</span>)</div><div class="line">ax.legend(fontsize=<span class="number">16</span>,loc=(<span class="number">1</span>,<span class="number">0</span>))</div><div class="line">ax.set_xlabel(<span class="string">r'$x$'</span>,fontsize=<span class="number">18</span>)</div><div class="line">ax.vlines(<span class="number">0</span>,<span class="number">0</span>,ax.axis()[<span class="number">-1</span>]*<span class="number">1.1</span>,linestyles=<span class="string">'--'</span>,lw=<span class="number">3.</span>)</div><div class="line">ax.fill_between(xi,f1.pdf(xi),where=xi&gt;<span class="number">0</span>,alpha=<span class="number">.3</span>,color=<span class="string">'g'</span>)</div><div class="line">ax.fill_between(xi,f0.pdf(xi),where=xi&gt;<span class="number">0</span>,alpha=<span class="number">.3</span>,color=<span class="string">'b'</span>)</div></pre></td></tr></table></figure>
+<pre><code>&lt;matplotlib.collections.PolyCollection at 0x116666b0&gt;
+</code></pre><p><img src="output_2_1.png" alt="png"></p>
+<p>In the above figure, the blue shaded area is the false-alarm probability and the shaded gray area is the probability of detection. These two values are what is plotted on a ROC. The dotted vertical line indicates the threshold value $c$.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">plot_roc_interact</span><span class="params">(c=<span class="number">0</span>)</span>:</span></div><div class="line">    xi = linspace(<span class="number">-3</span>,<span class="number">5</span>,<span class="number">100</span>)</div><div class="line">    fig,axs = subplots(<span class="number">1</span>,<span class="number">2</span>)</div><div class="line">    fig.set_size_inches((<span class="number">10</span>,<span class="number">3</span>))</div><div class="line">    ax = axs[<span class="number">0</span>]</div><div class="line">    ax.plot(xi,f0.pdf(xi),label=<span class="string">r'$f(x|C_0)$'</span>)</div><div class="line">    ax.plot(xi,f1.pdf(xi),label=<span class="string">r'$f(x|C_1)$'</span>)</div><div class="line">    ax.set_xlabel(<span class="string">r'$x$'</span>,fontsize=<span class="number">18</span>)</div><div class="line">    ax.vlines(c,<span class="number">0</span>,ax.axis()[<span class="number">-1</span>]*<span class="number">1.1</span>,linestyles=<span class="string">'--'</span>,lw=<span class="number">3.</span>)</div><div class="line">    ax.fill_between(xi,f1.pdf(xi),where=xi&gt;c,alpha=<span class="number">.3</span>,color=<span class="string">'g'</span>)</div><div class="line">    ax.fill_between(xi,f0.pdf(xi),where=xi&gt;c,alpha=<span class="number">.3</span>,color=<span class="string">'b'</span>)</div><div class="line">    ax.axis(xmin=<span class="number">-3</span>,xmax=<span class="number">5</span>)</div><div class="line">    crange = linspace(<span class="number">-3</span>,<span class="number">5</span>,<span class="number">50</span>)</div><div class="line">    ax=axs[<span class="number">1</span>]</div><div class="line">    ax.plot(<span class="number">1</span>-f0.cdf(crange),<span class="number">1</span>-f1.cdf(crange))</div><div class="line">    ax.plot(<span class="number">1</span>-f0.cdf(c),<span class="number">1</span>-f1.cdf(c),<span class="string">'o'</span>,ms=<span class="number">15.</span>)</div><div class="line">    ax.set_xlabel(<span class="string">'False-alarm probability'</span>)</div><div class="line">    ax.set_ylabel(<span class="string">'Detection probability'</span>)</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">interact(plot_roc_interact,c=(<span class="number">-3</span>,<span class="number">5</span>,<span class="number">.05</span>))</div></pre></td></tr></table></figure>
+<p><img src="output_5_0.png" alt="png"></p>
+<p>If you drag the slider in the interactive figure above, you will see how the colored areas shown on the left frame correspond to movement along the ROC on the right. Better binary classifiers have ROC curves that reach up to the upper left corner because these are the points that correspond to very high detection probabilities at a very low false alarm probability. A test that is no better than guessing just be a diagonal line on the ROC chart. This would correspond to a 100% overlap between the two density functions.  You can try this for yourself by changing the values of the respective meanings of the two density functions to see what happens when they overlap more (or less).</p>
+<p>The AUC is independent of the particular threshold value because the ROC-curve is drawn by sweeping over this value.  This means that the AUC is indirectly <em>integrated</em> over the threshold values.  However, the computation of the AUC is based <em>explicitly</em>  on the $P_{FA}$ as in the following,</p>
+<span>$AUC = \int P_D(P_{FA})dP_{FA}$</span><!-- Has MathJax -->
+<p>which doesn’t give us a lot of room for interpretation.<br>We can start to break this up by expanding</p>
+<p>$$ P_D(c) = 1-F_1(c)  $$</p>
+<p>where $F_1$ is the cumulative density function for $C_1$, and analogously, for $C_0$, we have the following</p>
+<p>$$ P_{FA}(c) = 1-F_0(c)  $$</p>
+<p>Let’s start by fixing a particular <span>$c^*$</span><!-- Has MathJax -->. This corresponds to a particular <span>$P_{FA}(c^*)$</span><!-- Has MathJax -->. In words, this corresponds to the probability of member of the $C_0$ class such that <span>$x_0&gt;c^*$</span><!-- Has MathJax -->, or, equivalently <span>$\mathbb{P}(x_0&gt;c^*|C_0)$</span><!-- Has MathJax -->. Note that I have introduced subscript here to emphasize that $x_0\in C_0$. By the same reasoning, we have <span>$P_D(c^*) =\mathbb{P}(x_1&gt;c^*|C_1)$</span><!-- Has MathJax -->.</p>
+<p>Now, in terms of the AUC integral, we have to reference $P_D$ through the <span>$P_{FA}$</span><!-- Has MathJax -->. The trick is choose <span>$c^*$ distributed as $F_0$ as in $c^*\sim F_0$</span><!-- Has MathJax -->.</p>
+<span>$P_D ( c^*) =  \mathbb{P}(x_1 &gt;c^*|C_1)$</span><!-- Has MathJax -->
+<p>Weirdly enough, this makes $P_D$ a random variable in its own right, with corresponding expectation as </p>
+<span>$\mathbb{E}(P_D) =\int P_D dP_{FA} = AUC$</span><!-- Has MathJax -->
+<p>Now, we finally have an interpretation. The AUC is the expected probability that an element  $ x_1 \in C_1 $ would be more probable to be assigned to class $C_1$ than an element drawn from $C_0$ to be  assigned to $ C_1 $. This is another way of saying that $1-F_1(t) &gt; 1-F_0(t)$ for all $ t $ (i.e. <em>stochastically larger</em>).</p>
+<h2 id="Wilcoxon–Mann–Whitney-test"><a href="#Wilcoxon–Mann–Whitney-test" class="headerlink" title="Wilcoxon–Mann–Whitney test"></a>Wilcoxon–Mann–Whitney test</h2><p>The Wilcoxon–Mann–Whitney test (AKA Mann–Whitney U-test) is a nonparametric method to test whether or not samples derive from two separate distributions. The basic idea is that if there is no difference between the two categories, then combining them into one big set and then computing the statistic (or any statistic, really) as a permutation of the larger set should be no different. In other words, if there is no difference, then combining the data and pretending that the actual observed data is just one permutation of the mixture should be indistinguishable statistically.</p>
+<p>Supposed we need to compare to populations using the median, mean, or some other location estimator. In terms of the cumulative distribution functions for the two populations, for $ H_0 $ we have the following:</p>
+<p>$$ H_0: F_X(t) = F_Y(t) $$</p>
+<p>Namely, the data are drawn from the same underlying distribution. The alternative hypothesis is that $ F_X(t) \lt F_Y(t) $  for all $ t $. For example, this could happen if one of the distributions is shifted with respect to the other. We have two labeled independent samples <span>$\lbrace X_i \rbrace_{i=1}^n$</span><!-- Has MathJax --> and <span>$\lbrace Y_i \rbrace_{i=1}^m$</span><!-- Has MathJax -->. Note that the samples sizes can be different (i.e. $m\neq n$).</p>
+<p>The test works by collecting all the samples into one big set and then ranking the samples within the big set. The test statistic $ U $ is the sum of the ranks (taken within the big set) of the $X$-ranks. The idea is that when $U$ is small, the $X$-variables have lower ranks (i.e. are generally smaller than the $Y$-variables). This is evidence that the $ X $-distribution is shifted to the left of the $ Y $-distribution (i.e. $ F_X(t) &lt; F_Y(t) $, stochastically).</p>
+<p>The following code shows an example of this for the two distributions considered above.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">print</span> <span class="string">'p-value '</span>,stats.wilcoxon(f1.rvs(<span class="number">30</span>),f0.rvs(<span class="number">30</span>))[<span class="number">1</span>]</div></pre></td></tr></table></figure>
+<pre><code>p-value  1.79884806918e-05
+</code></pre><p>Because the computed p-value is so small, we can reject the null hypothesis that the distributions $F_X(t)$ and $ F_Y(t) $ are stochastically equal. This is good because we constructed them as such!</p>
+<h2 id="Connection-to-AUC"><a href="#Connection-to-AUC" class="headerlink" title="Connection to AUC"></a>Connection to AUC</h2><p>Writing the U-statistic this way,</p>
+<span>$\hat{\theta}_{XY} = \frac{1}{m n} \sum_{i=1}^m \sum_{j=1}^n \mathbb{I}(Y_j&gt;X_i)$</span><!-- Has MathJax -->
+<p>where $ \mathbb{I} $ is the indicator function, shows that the statistic (for the discrete case) is estimating the probability that $Y$ is stochastically larger than $ X $. Thus, This correspondence means that the value of this (in the large sample limit) is equal to AUC.</p>
+<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>In this article, we developed the area under the receiver operating characteristic curve (ROC) and connected it to the Wilcoxon–Mann–Whitney U-statistic. This area (i.e. AUC) is used To quantify the performance of a binary classifier using a single number. The problem is that it does not distinguish between regions of performance along the ROC. Thus, two different classifiers could have the same AUC-value and provide different relative performance for certain regions of ROC graph. This difference may be important to binary classifiers that typically operate in a small region of the ROC-curve.</p>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
+<li><p>Boos, Dennis D., and L. A. Stefanski. Essential Statistical Inference. Springer, 2013.</p>
+</li>
+<li><p>Cortes, Corinna, and Mehryar Mohri. “AUC optimization vs. error rate minimization.” Advances in neural information processing systems 16.16 (2004): 313-320.</p>
+</li>
+<li><p>Mann, Henry B., and Donald R. Whitney. “On a test of whether one of two random variables is stochastically larger than the other.” The annals of mathematical statistics (1947): 50-60.</p>
+</li>
+<li><p>Mozer, Michael C. “Optimizing classifier performance via an approximation to the Wilcoxon-Mann-Whitney statistic.” (2003).</p>
+</li>
+</ul>
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="https://github.com/pidefrem" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+
+                    
+                </ul>
+                <p class="copyright text-muted">&copy; 2017 pidefrem<br></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments --><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+
+</body>
+
+</html>
